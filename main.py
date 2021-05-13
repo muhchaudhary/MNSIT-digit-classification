@@ -3,6 +3,7 @@ from matplotlib import pyplot
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, Dropout, Flatten, MaxPooling2D
+import cv2
 # load dataset
 (trainX, trainy), (testX, testy) = mnist.load_data()
 
@@ -29,6 +30,10 @@ model.add(Dense(10,activation=tf.nn.softmax))
 model.compile(optimizer='adam', 
               loss='sparse_categorical_crossentropy', 
               metrics=['accuracy'])
+
 model.fit(x=trainX,y=trainy, epochs=10)
 
-model.evaluate(trainX, testy)
+model.save('saved_model/my_model')
+
+model.evaluate(testX, testy)
+
