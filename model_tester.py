@@ -17,12 +17,20 @@ for y in range(28):
     for x in range(28):
         row.append(255-rawData[x,y])
     data.append(row)
+
+for x in range(len(data)):
+    data[0][x] = 0
+    data[x][0] = 0
+    data[x][1] = 0
+    if data[x][1] > 0 and data[x][1] <= 255:
+        print("what the hell")
+        data[x][1] == 0
 data = np.array(data)
-plt.imshow(data,cmap='Greys')
-plt.imshow(x_test[image_index].reshape(28,28),cmap='Greys')
+plt.imshow(data.reshape(28,28),cmap='Greys')
+#plt.imshow(x_test[image_index].reshape(28,28),cmap='Greys')
 plt.show()
 #print(data)
 pred = model.predict(data.reshape(1, 28, 28, 1))
-pred2 = model.predict(x_test[image_index].reshape(1,28,28,1))
+#pred2 = model.predict(x_test[image_index].reshape(1,28,28,1))
 print(pred.argmax())
-print(pred2.argmax())
+#print(pred2.argmax())
